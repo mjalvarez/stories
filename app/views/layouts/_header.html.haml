@@ -1,0 +1,29 @@
+%nav.navbar.navbar-default.navbar-fixed-top{"data-behavior" => "animated-navbar"}
+  .container-fluid.col-md-10.col-md-offset-1
+    .navbar-header
+      = link_to root_path, class: "navbar-brand", id: "logo" do
+        = image_tag('stories-logo.svg', height: 40, alt: "Stories")
+    %ul.nav.navbar-nav.filter-links
+      %li
+        - if user_signed_in?
+          = nav_link_to "Home", root_path
+        - else
+          = nav_link_to "Staff pick", root_path
+      %li= nav_link_to "Top stories", top_stories_path
+      - if user_signed_in?
+        %li= nav_link_to "Bookmarks", dashboard_bookmarks_path
+      - else
+        %li
+          %a{"data-behavior" => "trigger-overlay", :href => ""} Bookmarks
+    .folding-nav
+      %ul.nav.navbar-nav.navbar-right
+        %li.main-searchbar
+          = react_component('SearchContainer')
+        - if user_signed_in?
+          %li.new-post-button= link_to "Write a story", new_post_path, class: "button"
+          %li#notifications
+            = react_component('NotificationsContainer', {})
+          = render 'layouts/avatar_dropdown'
+        - else
+          %li.new-post-button= link_to "Write a story", new_post_path, class: "button", data: { behavior: 'trigger-overlay' }
+          %li.sign-in-button= link_to "Sign in / Sign up", new_user_session_path, class: 'button green-border-button', data: { behavior: 'trigger-overlay' }

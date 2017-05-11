@@ -19,6 +19,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'font-awesome-sass', '~> 4.5'
 gem 'uglifier', '>= 1.3.0'
 gem 'autoprefixer-rails', '~> 6.3'
+gem 'hamlit-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'turbolinks', '~> 2.5'
